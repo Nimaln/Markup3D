@@ -3,9 +3,9 @@ function markup3d(viewer, options) {
     Autodesk.Viewing.Extension.call(this, viewer, options);
     this.raycaster = new THREE.Raycaster();
     this.raycaster.params.PointCloud.threshold = 5; // hit-test markup size.  Change this if markup 'hover' doesn't work
-    this.size = 150.0; // markup size.  Change this if markup size is too big or small
+    this.size = 30.0; // markup size.  Change this if markup size is too big or small
     this.lineColor = 0xcccccc; // off-white
-    this.labelOffset = new THREE.Vector3(120,120,0);  // label offset 3D line offset position
+    this.labelOffset = new THREE.Vector3(12,12,0);  // label offset 3D line offset position
     this.xDivOffset = -0.2;  // x offset position of the div label wrt 3D line.
     this.yDivOffset = 0.4;  // y offset position of the div label wrt 3D line.
 
@@ -53,8 +53,10 @@ markup3d.prototype.updateHitTest = function(event) {
     let canvas = event.target;
     let _x = event.offsetX * canvas.width / canvas.clientWidth | 0;
     let _y = event.offsetY * canvas.height / canvas.clientHeight | 0;
-    let x = _x / canvas.clientWidth + -1; // scales from -1 to 1
-    let y = _y / canvas.clientHeight + -1; // scales from -1 to 1
+    //let x = _x / canvas.clientWidth + -1; // scales from -1 to 1
+    //let y = _y / canvas.clientHeight + -1; // scales from -1 to 1
+    let x = 2 * (_x / canvas.clientWidth) - 1; // scales from -1 to 1
+    let y = -2 * (_y / canvas.clientHeight) + 1; // scales from -1 to 1, with direction reversed
 
     var vector = new THREE.Vector3(x, y, 0.5).unproject(this.camera);
     this.raycaster.set(this.camera.position, vector.sub(this.camera.position).normalize());

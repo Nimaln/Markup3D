@@ -1,5 +1,7 @@
 var viewer;
-var svfURL = "https://lmv-models.s3.amazonaws.com/toy_plane/toy_plane.svf";
+var svfURL= "https://s3.amazonaws.com/reality-capture-test-pictures/HIL_E9.svf"
+//var svfURL = "https://lmv-models.s3.amazonaws.com/toy_plane/toy_plane.svf";
+//var svfURL = "https://lmv-models.s3.amazonaws.com/simple_revit_building/output/Resource/3D_View/_3D_/_3D_.svf";
 var $ = function(div){return document.getElementById(div)}
 
 document.addEventListener('mousewheel', e => { console.log(e) }, true);
@@ -35,9 +37,9 @@ function initializeMarkup(){
         for (let i=0; i<20; i++) {
             dummyData.push({
                 icon:  Math.round(Math.random()*3),  
-                x: Math.random()*300-150, 
-                y: Math.random()*50-20, 
-                z: Math.random()*150-130
+                x: Math.random()*20-10, 
+                y: Math.random()*5-4, 
+                z: Math.random()*5-3
             });
         }        
         window.dispatchEvent(new CustomEvent('newData', {'detail': dummyData}));
